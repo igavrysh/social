@@ -20,6 +20,12 @@ module.exports.session = {
   ***************************************************************************/
   secret: 'ee71d2152343793309d6ad08dda3afd7',
 
+  adapter: 'connect-mongo',
+  //url: 'mongodb://user:pass@host:port/database',
+  
+  url: 'mongodb://socialadmin:socialadmin123@ds047166.mlab.com:47166/heroku_h23zdzg5',
+  
+  collection: 'sessions',
 
   /***************************************************************************
   *                                                                          *
