@@ -1,0 +1,75 @@
+<style>
+
+.outer-div {
+  display: flex; 
+  justify-content: center;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.inner-div {
+  display: flex; 
+  justify-content: center; 
+  flex-direction: column;
+}
+
+input {
+  padding: 12px;
+  font-size: 14px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: solid 1px rgb(215, 215, 215);
+}
+
+button {
+  background-color: dodgerblue;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  padding: 12px;
+}
+
+</style>
+
+<div class="outer-div">
+
+  <div class="inner-div">
+
+    <div style="display: flex; justify-content: center;">
+      <div>
+        <div syle="display: flex; justify-content: center;">
+          <img style="width: 100px;" src="/images/startup.png">
+        </div>
+        <div style="margin-bottom: 16px; font-size: 28px; font-weight: bold;"> 
+          Fullstack Social
+        </div>
+      </div>
+    </div>
+
+    <div style="background-color: white; padding: 24px;"> 
+
+      <div style="
+        font-weight: bold; 
+        font-size: 16px; 
+        margin-bottom: 16px; 
+        text-align: center;">
+        Log into your account
+      </div>
+
+
+      <form action="/someroute" style='display: flex; flex-direction: column;'>
+        <input type="text" placeholder="Email">
+        <input type="password" placeholder="Password">
+        <button type="submit">Login</button>
+      </form>
+
+      <div>
+        Don't have an account?
+        <a href="/singup">Sign up</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
