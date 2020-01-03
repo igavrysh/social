@@ -11,9 +11,9 @@
 		9581FD14F3D4FB14ADAC56C5 /* Pods_ios_social_ios_socialUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2C80EFBBE50E8A9F8336CCB /* Pods_ios_social_ios_socialUITests.framework */; };
 		BC15DBBF4CC25EF1F566E616 /* Pods_ios_socialTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 883E02D42942742C77B44CAF /* Pods_ios_socialTests.framework */; };
 		D5B10ECC23BFA99D00ACBC1F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B10ECB23BFA99D00ACBC1F /* HomeController.swift */; };
+		D5B10ECE23BFAD8300ACBC1F /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B10ECD23BFAD8300ACBC1F /* LoginController.swift */; };
 		D5D29E2F23BFA668003E9BC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D29E2E23BFA668003E9BC1 /* AppDelegate.swift */; };
 		D5D29E3123BFA668003E9BC1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D29E3023BFA668003E9BC1 /* SceneDelegate.swift */; };
-		D5D29E3323BFA668003E9BC1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D29E3223BFA668003E9BC1 /* ViewController.swift */; };
 		D5D29E3823BFA668003E9BC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5D29E3723BFA668003E9BC1 /* Assets.xcassets */; };
 		D5D29E3B23BFA668003E9BC1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5D29E3923BFA668003E9BC1 /* LaunchScreen.storyboard */; };
 		D5D29E4623BFA668003E9BC1 /* ios_socialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D29E4523BFA668003E9BC1 /* ios_socialTests.swift */; };
@@ -46,10 +46,10 @@
 		918A27578B91ACEE70C76B53 /* Pods-ios_social.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_social.release.xcconfig"; path = "Target Support Files/Pods-ios_social/Pods-ios_social.release.xcconfig"; sourceTree = "<group>"; };
 		C17E4600C12086F545761DF6 /* Pods-ios_socialTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_socialTests.release.xcconfig"; path = "Target Support Files/Pods-ios_socialTests/Pods-ios_socialTests.release.xcconfig"; sourceTree = "<group>"; };
 		D5B10ECB23BFA99D00ACBC1F /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		D5B10ECD23BFAD8300ACBC1F /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		D5D29E2B23BFA668003E9BC1 /* ios_social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_social.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5D29E2E23BFA668003E9BC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5D29E3023BFA668003E9BC1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D5D29E3223BFA668003E9BC1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D5D29E3723BFA668003E9BC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D5D29E3A23BFA668003E9BC1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D5D29E3C23BFA668003E9BC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -115,8 +115,8 @@
 		D5B10ECA23BFA95E00ACBC1F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D5D29E3223BFA668003E9BC1 /* ViewController.swift */,
 				D5B10ECB23BFA99D00ACBC1F /* HomeController.swift */,
+				D5B10ECD23BFAD8300ACBC1F /* LoginController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -439,7 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5B10ECC23BFA99D00ACBC1F /* HomeController.swift in Sources */,
-				D5D29E3323BFA668003E9BC1 /* ViewController.swift in Sources */,
+				D5B10ECE23BFAD8300ACBC1F /* LoginController.swift in Sources */,
 				D5D29E2F23BFA668003E9BC1 /* AppDelegate.swift in Sources */,
 				D5D29E3123BFA668003E9BC1 /* SceneDelegate.swift in Sources */,
 			);
