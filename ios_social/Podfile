@@ -1,0 +1,23 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'ios_social' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for ios_social
+  pod 'LBTATools'
+  pod 'Alamofire'
+  pod 'SDWebImage'
+  pod 'JGProgressHUD'
+
+  target 'ios_socialTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'ios_socialUITests' do
+    # Pods for testing
+  end
+
+end
