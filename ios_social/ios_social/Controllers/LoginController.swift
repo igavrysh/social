@@ -57,7 +57,8 @@ class LoginController: LBTAFormController {
     }
     
     @objc func goToRegister() {
-        
+        let controller = RegisterController(alignment: .center)
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     override func viewDidLoad() {
