@@ -15,11 +15,19 @@ class HomeController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        showCookies()
+        
         self.view.backgroundColor = .red
         
         navigationItem.rightBarButtonItem = .init(title: "Fetch postst", style: .plain, target: self, action: #selector(fetchPosts))
         
         navigationItem.leftBarButtonItem = .init(title: "Login", style: .plain, target: self, action: #selector(handleLogin))
+    }
+    
+    fileprivate func showCookies() {
+        HTTPCookieStorage.shared.cookies?.forEach({ (cookie) in
+            print(cookie)
+        })
     }
     
     @objc fileprivate func fetchPosts() {
