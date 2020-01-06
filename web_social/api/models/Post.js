@@ -1,7 +1,14 @@
 module.exports = {
   attributes: {
     text: {
-      type: 'string', required: true
+      type: 'string', 
+      required: true
+    },
+    
+    imageUrl: {
+      type: 'string', 
+      //required: false,
+      defaultsTo: ''
     },
 
     user: {

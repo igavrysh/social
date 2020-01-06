@@ -38,6 +38,7 @@ function onFileChange(event) {
         " " + new Date(p.createdAt).toLocaleDateString() %>
       </div>
       <%=p.text%>
+      <img style="max-width: 400px;" src="<%= p.imageUrl%>" />
     </div>
   <%
   });
