@@ -37,22 +37,14 @@ class LoginController: LBTAFormController {
         
         errorLabel.isHidden = true
         
-        let url = "http://localhost:1337/api/v1/entrance/login"
-        let params = ["emailAddress": email, "password": password]
-        
-        Alamofire.request(url, method: .put, parameters: params, encoding: URLEncoding())
-            .validate(statusCode: 200..<300)
-            .response { (dataResponse) in
-            hud.dismiss()
-            
-            if let _ = dataResponse.error {
+        Service.shared.login(email: email, password: password) { (res) in
+            switch res {
+            case .failure:
                 self.errorLabel.isHidden = false
                 self.errorLabel.text = "Your credentials are not correct, please, try again."
-                return
+            case .success:
+                self.dismiss(animated: true)
             }
-            
-            print("Successfully logged in.")
-            self.dismiss(animated: true)
         }
     }
     

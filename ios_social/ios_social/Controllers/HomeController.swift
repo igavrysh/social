@@ -11,17 +11,7 @@ import WebKit
 import LBTATools
 import Alamofire
 
-struct Post: Decodable {
-    let id: String
-    let text: String
-    let createdAt: Int
-    let user: User
-}
 
-struct User: Decodable {
-    let id: String
-    let fullName: String
-}
 
 class HomeController: UITableViewController {
     

@@ -58,20 +58,17 @@ class RegisterController: LBTAFormController, UITextFieldDelegate {
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
-        let url = "http://localhost:1337/api/v1/entrance/signup"
-        let params = ["fullName": fullName, "emailAddress": email, "password": password]
-        Alamofire.request(url, method: .post, parameters: params).validate(statusCode: 200..<300).responseData { (dataResp) in
+        Service.shared.signUp(fullName: fullName, emailAddress: email, password: password) { (res) in
+            hud.dismiss(animated: true)
             
-            hud.dismiss()
-            
-            if let err = dataResp.error {
+            switch res {
+            case .failure(let err):
                 print("Failed to sign up: ", err)
                 self.errorLabel.isHidden = false
-                return
+            case .success:
+                print("Successfully signed up")
+                self.dismiss(animated: true)
             }
-            
-            print("Successfully signed up")
-            self.dismiss(animated: true)
         }
     }
     
