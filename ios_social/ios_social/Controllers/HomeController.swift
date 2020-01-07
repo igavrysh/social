@@ -51,7 +51,7 @@ class HomeController: UITableViewController, UINavigationControllerDelegate, UII
         })
     }
     
-    @objc fileprivate func fetchPosts() {
+    @objc func fetchPosts() {
         let url = "http://localhost:1337/post"
         Alamofire.request(url)
             .validate(statusCode: 200..<300)
@@ -84,13 +84,11 @@ class HomeController: UITableViewController, UINavigationControllerDelegate, UII
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        let cell = PostCell(style: .subtitle, reuseIdentifier: nil)
         let post = posts[indexPath.row]
-        cell.textLabel?.text = post.user.fullName
-        cell.textLabel?.font = .boldSystemFont(ofSize: 14)
-        cell.detailTextLabel?.text = post.text
-        cell.detailTextLabel?.numberOfLines = 0
-        cell.imageView?.sd_setImage(with: URL(string: post.imageUrl))
+        cell.usernameLabel.text = post.user.fullName
+        cell.postTextLabel.text = post.text
+        cell.postImageView.sd_setImage(with: URL(string: post.imageUrl))
         return cell
     }
     
@@ -104,49 +102,10 @@ class HomeController: UITableViewController, UINavigationControllerDelegate, UII
         guard let image = info[.originalImage] as? UIImage else { return }
         
         dismiss(animated: true) {
-            // we'll be uploading our image here
-            let url = "http://localhost:1337/post"
-            
-            Alamofire.upload(multipartFormData: { (formData) in
-                // post text
-                formData.append(Data("Coming from iPhone sim".utf8), withName: "postBody")
-                
-                // post image
-                guard let imagedata = image.jpegData(compressionQuality: 0.5) else { return }
-                formData.append(imagedata, withName: "imagefile", fileName: "DoesntMatterSoMatch", mimeType: "iamge/jpg")
-            }, to: url) { (res) in
-                switch res {
-                case .failure(let err):
-                    print("Failed to hit server: ", err)
-                case .success(let uploadRequest, _, _):
-                    uploadRequest.uploadProgress { (progress) in
-                        print("Upload progress: \(progress.fractionCompleted)")
-                    }
-                    
-                    uploadRequest.responseJSON { (dataResp) in
-                        if let err = dataResp.error {
-                            print("Failed to hit server: ", err)
-                            return
-                        }
-                        
-                        if let code = dataResp.response?.statusCode, code >= 300 {
-                            print("Failed upload with status: ", code)
-                        }
-                        
-                        let respString = String(data: dataResp.data ?? Data(), encoding: .utf8)
-                        print("Successfully created post, here is the response:")
-                        print(respString ?? "")
-                        
-                        self.fetchPosts()
-                    }
-                }
-                
-                print("Maybe finished uploading")
-            }
+            let createPostController = CreatePostController(selectedImage: image)
+            createPostController.homeController = self
+            self.present(createPostController, animated: true)
         }
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
-    }
 }
