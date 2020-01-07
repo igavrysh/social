@@ -10,10 +10,9 @@ import UIKit
 import WebKit
 import LBTATools
 import Alamofire
+import SDWebImage
 
-
-
-class HomeController: UITableViewController {
+class HomeController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     var posts = [Post]()
     
@@ -22,9 +21,28 @@ class HomeController: UITableViewController {
         
         showCookies()
                 
-        navigationItem.rightBarButtonItem = .init(title: "Fetch postst", style: .plain, target: self, action: #selector(fetchPosts))
+        navigationItem.rightBarButtonItem = .init(
+            title: "Fetch postst",
+            style: .plain,
+            target: self,
+            action: #selector(fetchPosts))
         
-        navigationItem.leftBarButtonItem = .init(title: "Login", style: .plain, target: self, action: #selector(handleLogin))
+        navigationItem.rightBarButtonItems = [
+            .init(title: "Fetch posts", style: .plain, target: self, action: #selector(fetchPosts)),
+            .init(title: "Create post", style: .plain, target: self, action: #selector(createPost))
+        ]
+        
+        navigationItem.leftBarButtonItem = .init(
+            title: "Login",
+            style: .plain,
+            target: self,
+            action: #selector(handleLogin))
+    }
+    
+    @objc fileprivate func createPost() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        present(imagePicker, animated: true)
     }
     
     fileprivate func showCookies() {
@@ -72,6 +90,63 @@ class HomeController: UITableViewController {
         cell.textLabel?.font = .boldSystemFont(ofSize: 14)
         cell.detailTextLabel?.text = post.text
         cell.detailTextLabel?.numberOfLines = 0
+        cell.imageView?.sd_setImage(with: URL(string: post.imageUrl))
         return cell
+    }
+    
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        guard let image = info[.originalImage] as? UIImage else { return }
+        
+        dismiss(animated: true) {
+            // we'll be uploading our image here
+            let url = "http://localhost:1337/post"
+            
+            Alamofire.upload(multipartFormData: { (formData) in
+                // post text
+                formData.append(Data("Coming from iPhone sim".utf8), withName: "postBody")
+                
+                // post image
+                guard let imagedata = image.jpegData(compressionQuality: 0.5) else { return }
+                formData.append(imagedata, withName: "imagefile", fileName: "DoesntMatterSoMatch", mimeType: "iamge/jpg")
+            }, to: url) { (res) in
+                switch res {
+                case .failure(let err):
+                    print("Failed to hit server: ", err)
+                case .success(let uploadRequest, _, _):
+                    uploadRequest.uploadProgress { (progress) in
+                        print("Upload progress: \(progress.fractionCompleted)")
+                    }
+                    
+                    uploadRequest.responseJSON { (dataResp) in
+                        if let err = dataResp.error {
+                            print("Failed to hit server: ", err)
+                            return
+                        }
+                        
+                        if let code = dataResp.response?.statusCode, code >= 300 {
+                            print("Failed upload with status: ", code)
+                        }
+                        
+                        let respString = String(data: dataResp.data ?? Data(), encoding: .utf8)
+                        print("Successfully created post, here is the response:")
+                        print(respString ?? "")
+                        
+                        self.fetchPosts()
+                    }
+                }
+                
+                print("Maybe finished uploading")
+            }
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
     }
 }
