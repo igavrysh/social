@@ -9,12 +9,54 @@ function onFileChange(event) {
 }
 </script>
 
-
 <div style="background-color: rgb(238, 238, 238); padding: 24px;">
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-  <div id="app">
+  <style>
+    [v-cloak] { display: none;}
+
+    .red {
+      background-color: red;
+    }
+
+    .gray {
+      background-color: darkgray;
+    }
+  
+  </style>
+
+
+  <div id="app" v-cloak>
+
+    <!-- modal container -->
+    <div v-if="shouldShowDeleteConfirmation" 
+      style="background-color: rgba(0, 0, 0, 0.8);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding-top: 200px;">
+      <div style="background-color: white;
+        margin: auto; 
+        width: 50%;
+        padding: 24px">
+        <div>
+          Are you sure you want to delete?
+        </div>
+
+        <div style="margin-top: 16px; display: flax;">
+          <div style="flex: 1"></div>
+          <button v-on:click="shouldShowDeleteConfirmation = false">Cancel</button>
+          <button v-on:click="confirmDelete" 
+            v-bind:class="[isDeletingPost ? 'gray' : 'red']"
+            style="color: white;
+              margin-left: 16px;">Delete</button>
+        </div>
+      </div>
+    </div>
+
     <div v-for="p in posts">
       <div style="
         background-color: white; 
@@ -46,25 +88,32 @@ function onFileChange(event) {
     const App = new Vue({
       el: '#app',
       data: {
-        posts: window.SAILS_LOCALS.allPosts
+        posts: window.SAILS_LOCALS.allPosts,
+        shouldShowDeleteConfirmation: false,
+        selectedPostToDelete: null,
+        isDeletingPost: false
       },
       methods: {
-        deletePost: async function(post) {
-          console.log(post);
-
-          // i want to send a delete request
-          const postId = post.id;
+        confirmDelete: async function() {
+          const postId = this.selectedPostToDelete.id;
 
           try {
+            this.isDeletingPost = true;
             await axios.delete(`/post/${postId}`);
-
+            this.shouldShowDeleteConfirmation = false;
             this.posts = this.posts.filter(p => {
-              return p.id != post.id;
+              return p.id != this.selectedPostToDelete.id;
             }); 
+            this.isDeletingPost = false;
           } catch (err) {
             console.error(err.toString());
           }
-          
+        },
+        deletePost: async function(post) {
+          this.selectedPostToDelete = post;
+          this.shouldShowDeleteConfirmation = true;
+
+          return;
         }
       }
     })
