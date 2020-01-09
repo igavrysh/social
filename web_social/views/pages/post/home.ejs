@@ -12,74 +12,9 @@ function onFileChange(event) {
 
 <div style="background-color: rgb(238, 238, 238); padding: 24px;">
 
-  <!-- 
-  Here is my post creation form
-
-  <form style="margin-bottom: 12px" action="/post" method="POST" enctype="multipart/form-data">
-    <input name="postBody" type="text" placeholder="Enter post text">
-    <button type="submit">Create Post</button>
-    <br><br>
-    <div>
-      <input name='imagefile' onchange='onFileChange(event)' type="file"/>
-      <img id="selectedImage"
-        style="max-width: 200px;display: none;"
-        src="image url"/>
-    </div>
-  </form>
-
-  -->
-
-  <!-- 
-  Below are all of my posts: 
-  <% 
-  allPosts.forEach(p => { 
-  %>
-    <div id="post-<%= p.id%>"
-      style='
-        background-color: white; 
-        padding: 24px; 
-        margin-bottom: 12px;
-        display: flex;
-        flex-direction: column;'>
-      <div style='font-weight: bold;'>
-        <%= p.user.fullName%>
-      </div>
-      <div style="color: rgb(186, 186, 186)"> 
-        <%= new Date(p.createdAt).toLocaleTimeString() +
-        " " + new Date(p.createdAt).toLocaleDateString() %>
-      </div>
-      <%=p.text%>
-      <img style="max-width: 100%;" src="<%= p.imageUrl%>" />
-
-      <button id="<%= p.id%>" onclick="handleDeletePost(event)" 
-        style="max-width: 100%;">Delete Post</button>
-      
-    </div>
-  <%
-  });
-  %> 
-
-
-  <script>
-    function handleDeletePost(event) {
-      const postId = event.target.id;
-      console.log(postId);
-      const postDiv = document.getElementById('post-' + postId);
-      console.log(postDiv);
-      postDiv.parentNode.removeChild(postDiv);
-    }
-  </script>
-  -->
-
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
   <div id="app">
-    <!--
-    {{myMessage}}
-    <br>
-    {{counter}}
-
-    <button v-on:click='incrementCounter()'>Increment Counter</button> -->
     <div v-for="p in posts">
       <div style="
         background-color: white; 
@@ -105,24 +40,31 @@ function onFileChange(event) {
 
   <%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
 
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
   <script>
     const App = new Vue({
       el: '#app',
       data: {
-        counter: 0,
-        myMessage: "hello to the real world outside",
-        foo: 'bar',
         posts: window.SAILS_LOCALS.allPosts
       },
       methods: {
-        incrementCounter: function() {
-          this.counter += 1;
-        },
-        deletePost: function(post) {
+        deletePost: async function(post) {
           console.log(post);
-          this.posts = this.posts.filter(p => {
-            return p.id != post.id;
-          });
+
+          // i want to send a delete request
+          const postId = post.id;
+
+          try {
+            await axios.delete(`/post/${postId}`);
+
+            this.posts = this.posts.filter(p => {
+              return p.id != post.id;
+            }); 
+          } catch (err) {
+            console.error(err.toString());
+          }
+          
         }
       }
     })

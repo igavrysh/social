@@ -66,6 +66,7 @@ module.exports.routes = {
   'GET /listusers': 'user/listusers',
   'GET /post': { action: 'post/home', csrf: false } ,
   'POST /post': 'post/create',
+  'DELETE /post/:postId': 'post/delete',
 
   'GET /customauth/login': { 
     view: 'pages/customauth/custom-login',
