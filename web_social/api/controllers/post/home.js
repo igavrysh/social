@@ -10,7 +10,8 @@ module.exports = async function(req, res) {
     .sort('createdAt DESC'); 
 
   if (req.wantsJSON) {
-    return res.send(allPosts)
+    console.log('Client wants JSON posts -- sending all posts info');
+    return res.send(allPosts);
   }
 
   //return res.send(allPosts);

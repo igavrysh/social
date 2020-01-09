@@ -52,23 +52,14 @@ class HomeController: UITableViewController, UINavigationControllerDelegate, UII
     }
     
     @objc func fetchPosts() {
-        let url = "http://localhost:1337/post"
-        Alamofire.request(url)
-            .validate(statusCode: 200..<300)
-            .responseData { (dataResp) in
-                if let err = dataResp.error {
-                    print("Failed to fetch posts: ", err)
-                    return
-                }
-                
-                guard let data = dataResp.data else { return }
-                do {
-                    let posts = try JSONDecoder().decode([Post].self, from: data)
-                    self.posts = posts
-                    self.tableView.reloadData()
-                } catch {
-                    print(error)
-                }
+        Service.shared.fetchPosts { (res) in
+            switch res {
+            case .failure(let err):
+                print("Failed to fetch posts: ", err)
+            case .success(let posts):
+                self.posts = posts
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -77,7 +68,6 @@ class HomeController: UITableViewController, UINavigationControllerDelegate, UII
         let navController = UINavigationController(rootViewController: LoginController())
         present(navController, animated: true)
     }
-    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
