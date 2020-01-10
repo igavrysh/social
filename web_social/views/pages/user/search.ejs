@@ -7,7 +7,6 @@
   }
 </style>
 
-
 <div>
 
   <div id="navbar" 
@@ -31,7 +30,6 @@
     <%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
 
     <div id="app" style="padding: 16px;">
-      {{message}}
       <div v-for="u in users" 
         style="
           background-color: white; 
@@ -48,7 +46,6 @@
       const App = new Vue({
         el: '#app',
         data: {
-          message: 'Hello from Vue!',
           users: allUsers
         }
       });
