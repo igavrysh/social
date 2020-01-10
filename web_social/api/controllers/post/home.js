@@ -4,13 +4,15 @@ module.exports = async function(req, res) {
   //await Post.destroy();
   
   const userId = req.session.userId;
-  const allPosts = await Post.find()
-    //.find({user: userId})
-   // .populate('user')
+  const allPosts = await Post
+    .find({user: userId})
+    .populate('user')
     .sort('createdAt DESC'); 
 
   if (req.wantsJSON) {
     console.log('Client wants JSON posts -- sending all posts info');
+    console.log(allPosts);
+    console.log('End of the payload');
     return res.send(allPosts);
   }
 
