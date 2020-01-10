@@ -1,0 +1,58 @@
+<style>
+  #navbar a {
+    color: white;
+    text-decoration: none;
+    margin-right: 16px;
+    font-weight: bold;
+  }
+</style>
+
+
+<div>
+
+  <div id="navbar" 
+    style="
+      background-color: black; 
+      padding: 16px;
+      display: flex;">
+    <a href="/">Home</a>
+    <a href="/search">Search</a>
+    <a href="/profile">Profile</a>
+    <div style="flex: 1"></div>
+    <a href="/logout">Log out</a>
+  </div>
+
+
+  <div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
+
+    <div id="app" style="padding: 16px;">
+      {{message}}
+      <div v-for="u in users" 
+        style="
+          background-color: white; 
+          margin-bottom: 16px;
+          padding: 16px;">
+        {{u.fullName}}
+        <div>
+          {{u.emailAddress}}
+        </div>
+    </div>
+
+    <script>
+      const allUsers = window.SAILS_LOCALS.users;
+      const App = new Vue({
+        el: '#app',
+        data: {
+          message: 'Hello from Vue!',
+          users: allUsers
+        }
+      });
+    </script>
+
+  </div>
+  </div>

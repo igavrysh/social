@@ -13,7 +13,9 @@ module.exports.routes = {
   //  ╦ ╦╔═╗╔╗ ╔═╗╔═╗╔═╗╔═╗╔═╗
   //  ║║║║╣ ╠╩╗╠═╝╠═╣║ ╦║╣ ╚═╗
   //  ╚╩╝╚═╝╚═╝╩  ╩ ╩╚═╝╚═╝╚═╝
-  'GET /':                   { action: 'view-homepage-or-redirect' },
+  //'GET /':                   { action: 'view-homepage-or-redirect' },
+  'GET /': 'post/home',
+  
   'GET /welcome/:unused?':   { action: 'dashboard/view-welcome' },
 
   'GET /faq':                { action:   'view-faq' },
@@ -63,10 +65,13 @@ module.exports.routes = {
   'POST  /api/v1/entrance/update-password-and-login':    { action: 'entrance/update-password-and-login' },
   'POST  /api/v1/deliver-contact-form-message':          { action: 'deliver-contact-form-message' },
   
+  // CUSTOM ROUTING
   'GET /listusers': 'user/listusers',
   'GET /post': { action: 'post/home', csrf: false } ,
   'POST /post': 'post/create',
   'DELETE /post/:postId': 'post/delete',
+
+  'GET /search': 'user/search',
 
   'GET /customauth/login': { 
     view: 'pages/customauth/custom-login',
