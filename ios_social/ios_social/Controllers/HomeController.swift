@@ -19,7 +19,7 @@ class HomeController: UITableViewController, UINavigationControllerDelegate, UII
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showCookies()
+        fetchPosts()
                 
         navigationItem.rightBarButtonItem = .init(
             title: "Fetch postst",
@@ -76,9 +76,13 @@ class HomeController: UITableViewController, UINavigationControllerDelegate, UII
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = PostCell(style: .subtitle, reuseIdentifier: nil)
         let post = posts[indexPath.row]
+        
         cell.usernameLabel.text = post.user.fullName
         cell.postTextLabel.text = post.text
         cell.postImageView.sd_setImage(with: URL(string: post.imageUrl))
+
+        cell.delegate = self
+        
         return cell
     }
     
