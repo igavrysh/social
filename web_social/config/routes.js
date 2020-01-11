@@ -72,6 +72,9 @@ module.exports.routes = {
   'DELETE /post/:postId': 'post/delete',
 
   'GET /search': 'user/search',
+  'POST /following/:id': 'user/following',
+
+  'GET /profile': 'user/profile',
 
   'GET /customauth/login': { 
     view: 'pages/customauth/custom-login',

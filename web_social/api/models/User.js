@@ -9,13 +9,16 @@ module.exports = {
     return {
       id: this.id,
       fullName: this.fullName,
-      emailAddress: this.emailAddress
+      emailAddress: this.emailAddress,
+      following: this.following
     };
   },
 
-
   attributes: {
-
+    
+    following: {
+      collection: 'user'
+    },
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝

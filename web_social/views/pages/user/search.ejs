@@ -1,3 +1,16 @@
+<style>
+.following {
+  background-color: black;
+  color: white;
+};
+
+.non-following {
+  background-color: white;
+  color: black;
+}
+
+</style>
+
 <div>
 
   <%- partial('../../partials/navbar.ejs') %>
@@ -10,7 +23,8 @@
     <%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
 
     <div id="app" style="padding: 16px;">
-      <div v-for="u in users" 
+      <div v-for="u in users"
+        v-bind:key="u.id" 
         style="
           background-color: white; 
           margin-bottom: 16px;
@@ -19,15 +33,42 @@
         <div>
           {{u.emailAddress}}
         </div>
+
+        <div style="margin-top: 16px;">
+          <button 
+            v-on:click="follow(u)"
+            v-bind:class="u.isFollowing ? 'following' : 'non-following'">
+            {{u.isFollowing ? 'Unfollow' : 'Follow'}}</button>
+        </div>
       </div>
     </div>
 
     <script>
       const allUsers = window.SAILS_LOCALS.users;
+
       const App = new Vue({
         el: '#app',
         data: {
           users: allUsers
+        },
+        methods: {
+          follow: async function(user) {
+            console.log(user.fullName);
+            // toggle isFollowing here
+
+            await axios.post('/following/' + user.id);
+
+            this.users.forEach(u => {
+              if (u.id == user.id) {
+                // force a manual update of UI
+                const id = user.id;
+                u.id = "TEMP";
+                u.isFollowing = !u.isFollowing;
+                u.id = id;
+              }
+            });
+
+          }
         }
       });
     </script>
