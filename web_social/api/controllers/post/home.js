@@ -10,16 +10,23 @@ module.exports = async function(req, res) {
     .sort('createdAt DESC'); 
 
   if (req.wantsJSON) {
-    console.log('Client wants JSON posts -- sending all posts info');
-    console.log(allPosts);
-    console.log('End of the payload');
     return res.send(allPosts);
   }
 
-  //return res.send(allPosts);
+  /*
+  allPosts.forEach(p => {
+    p.user = {
+      id: p.user.id, 
+      fullName: p.user.fullName};
+  });
+  */
+
+  const string = JSON.stringify(allPosts);
+  const objects = JSON.parse(string);
+  console.log(string);
   
   res.view('pages/post/home', {
-    allPosts,
+    allPosts: objects,
     layout: 'layouts/nav-layout'
   });
 }

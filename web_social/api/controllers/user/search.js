@@ -8,29 +8,26 @@ module.exports = async function(req, res) {
   const currentUser = await User.findOne({id: req.session.userId})
     .populate('following');
 
-    const followingDictionary = new Object();
+  const followingDictionary = new Object();
 
-    currentUser.following.forEach(f => {
-      followingDictionary[f.id] = f;
-    });
+  currentUser.following.forEach(f => {
+    followingDictionary[f.id] = f;
+  });
 
-    users.forEach(u => {
-      u.isFollowing = followingDictionary[u.id] != null;
-    });
+  users.forEach(u => {
+    u.isFollowing = followingDictionary[u.id] != null;
+  });
 
-    /*
-    currentUser.following.forEach(f => {
-      console.log(f.fullName);
-      users.forEach(u => {
-        if (f.id == u.id) {
-          u.isFollowing = true;
-        }
-      })
-    });
-    */
+  const sanitizedUsers = users.map(u => {
+    return {
+      id: u.id, 
+      fullName: u.fullName,
+      emailAddress: u.emailAddress,
+      isFollowing: u.isFollowing};
+  });
 
   res.view('pages/user/search', {
     layout: 'layouts/nav-layout',
-    users
+    users: sanitizedUsers
   });
 }

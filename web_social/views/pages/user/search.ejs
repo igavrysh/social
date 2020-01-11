@@ -20,7 +20,7 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-    <%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
+    <%- exposeLocalsToBrowser({keys: ['users']}) %>
 
     <div id="app" style="padding: 16px;">
       <div v-for="u in users"
