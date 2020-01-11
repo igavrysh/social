@@ -9,8 +9,8 @@ module.exports = async function(req, res) {
 
   const options = {
     adapter: require('skipper-better-s3'),
-    key: 'AKIAJBME52Q25CEKPJUQ',
-    secret: '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',
+    key: '',
+    secret: '',
     bucket: 'gvr-social-bucket',
     s3params: {
       ACL: 'public-read'

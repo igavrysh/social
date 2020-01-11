@@ -5,6 +5,7 @@ module.exports = async function(req, res) {
     id: {'!=': req.session.userId}
   });
 
+
   res.view('pages/user/search', {
     layout: 'layouts/nav-layout',
     users
