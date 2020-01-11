@@ -1,32 +1,55 @@
 <div>
-  
   <%- exposeLocalsToBrowser({keys: ['user']})%>
   
   <%- partial('../../partials/navbar.ejs') %>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
-  <div id="app">
-    User information
-    <div>
-      {{user.fullName}}
+  <div id="app" style="max-width: 100%; padding: 24px;">
+    <div style="font-weight: bold; margin-bottom: 8px">
+      User information
     </div>
 
-    <div>
-      {{user.emailAddress}}
-    </div>
-
-    <div style="margin-top: 16px;">
-      Currently Following
-      <div v-for="u in user.following">
-        {{u.fullName}}
+    <div style="margin-bottom: 24px; background-color: white; padding: 16px">
+      <div>
+        {{user.fullName}}
+      </div>
+  
+      <div>
+        {{user.emailAddress}}
       </div>
     </div>
 
-    <div style="margin: 16px;">
-      Followers
-      <div v-for="u in user.followers">
-        {{u.fullName}}
+    <div style="display: flex; flex: 1">
+      <div style='flex: 1; margin-right: 24px'>
+        <div style="font-weight: bold; margin-bottom: 8px">
+          Currently Following
+        </div>
+        <div v-for="u in user.following" 
+          style="background-color: white; margin-bottom: 16px; padding: 16px">
+          <div>
+            {{u.fullName}}
+          </div>
+          <div>
+            {{u.emailAddress}}
+          </div>
+        </div>
+      </div>
+
+
+      <div style='flex: 1'>
+        <div style="font-weight: bold; margin-bottom: 8px">
+          Followers
+        </div>
+        <div v-for="u in user.followers"
+            style="background-color: white; margin-bottom: 16px; padding: 16px">
+          <div>
+            {{u.fullName}}
+          </div>
+          <div>
+            {{u.emailAddress}}
+          </div>
+        </div>
       </div>
     </div>
 
@@ -41,5 +64,4 @@
       }
     });
   </script>
-
 </div>
