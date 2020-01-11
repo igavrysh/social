@@ -10,7 +10,8 @@ module.exports = {
       id: this.id,
       fullName: this.fullName,
       emailAddress: this.emailAddress,
-      following: this.following
+      following: this.following,
+      followers: this.followers
     };
   },
 
@@ -19,6 +20,11 @@ module.exports = {
     following: {
       collection: 'user'
     },
+
+    followers: {
+      collection: 'user'
+    },
+
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝

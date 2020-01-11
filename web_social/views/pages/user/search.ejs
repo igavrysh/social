@@ -29,7 +29,10 @@
           background-color: white; 
           margin-bottom: 16px;
           padding: 16px;">
-        {{u.fullName}}
+        <a :href="'/user/' + u.id">
+          {{u.fullName}}
+        </a>
+
         <div>
           {{u.emailAddress}}
         </div>
