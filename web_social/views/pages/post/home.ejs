@@ -1,15 +1,6 @@
-<script>
-function onFileChange(event) {
-  console.log(event);
-  const file = event.target.files[0];
-  console.log(file);
-  const imageSrc = window.URL.createObjectURL(file);
-  document.getElementById('selectedImage').src = imageSrc;
-  document.getElementById('selectedImage').style.display = 'block';
-}
-</script>
+<div>
 
-<div style="background-color: rgb(238, 238, 238); padding: 24px;">
+  <%- partial('../../partials/navbar.ejs') %>
 
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
