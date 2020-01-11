@@ -55,19 +55,16 @@
           follow: async function(user) {
             console.log(user.fullName);
             // toggle isFollowing here
+            if (user.isFollowing) {
+              await axios.post('/unfollow/' + user.id);
+            } else {
+              await axios.post('/follow/' + user.id);
+            }
 
-            await axios.post('/following/' + user.id);
-
-            this.users.forEach(u => {
-              if (u.id == user.id) {
-                // force a manual update of UI
-                const id = user.id;
-                u.id = "TEMP";
-                u.isFollowing = !u.isFollowing;
-                u.id = id;
-              }
-            });
-
+            const id = user.id;
+            user.id = "TEMP";
+            user.isFollowing = !user.isFollowing;
+            user.id = id;
           }
         }
       });
