@@ -3,5 +3,21 @@ module.exports = async function(req, res) {
     .populate('following')
     .populate('followers');
 
-    res.send(currentUser);
+    const posts = await Post.find({user : req.session.userId})
+      .populate('user');
+
+    currentUser.posts = posts;
+
+    if (req.wantsJSON) {
+      res.send(currentUser);
+    }
+
+    // customToJSON
+
+    const sanitizedUser = JSON.parse(JSON.stringify(currentUser));
+
+    res.view('pages/user/profile', {
+      layout: 'layouts/nav-layout',
+      user: currentUser
+    })
 }
