@@ -22,9 +22,18 @@
 
     <div style="display: flex; flex: 1">
       <div style='flex: 1; margin-right: 24px'>
+
         <div style="font-weight: bold; margin-bottom: 8px">
           Currently Following
         </div>
+
+        <div v-if="!user.following || user.following.length == 0"
+          style="background-color: white;
+            padding: 16px;
+            margin-bottom: 16px;">
+          Not following anyone.    
+        </div>
+
         <div v-for="u in user.following" 
           style="background-color: white; margin-bottom: 16px; padding: 16px">
           <div>
@@ -34,13 +43,20 @@
             {{u.emailAddress}}
           </div>
         </div>
-      </div>
-
+      </div> 
 
       <div style='flex: 1'>
         <div style="font-weight: bold; margin-bottom: 8px">
           Followers
         </div>
+
+        <div v-if="!user.followers || user.followers.length == 0"
+          style="background-color: white;
+            padding: 16px;
+            margin-bottom: 16px;">
+          No followers.    
+        </div>
+
         <div v-for="u in user.followers"
             style="background-color: white; margin-bottom: 16px; padding: 16px">
           <div>
@@ -51,6 +67,14 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div style="font-weight: bold; margin-bottom: 16px;">
+      Posts
+    </div>
+
+    <div v-for="p in user.posts">
+      <%- partial('../../partials/post')%>
     </div>
 
   </div>

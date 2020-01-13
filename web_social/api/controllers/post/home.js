@@ -1,5 +1,5 @@
 module.exports = async function(req, res) {
-  sails.log.warn("Show the post creation forn now");
+  sails.log.warn("Show the post creation form now");
 
   //await Post.destroy();
   
@@ -8,6 +8,8 @@ module.exports = async function(req, res) {
     .find({user: userId})
     .populate('user')
     .sort('createdAt DESC'); 
+
+  allPosts.forEach(p => p.canDelete = true);
 
   if (req.wantsJSON) {
     return res.send(allPosts);

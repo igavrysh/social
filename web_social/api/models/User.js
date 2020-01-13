@@ -11,7 +11,8 @@ module.exports = {
       fullName: this.fullName,
       emailAddress: this.emailAddress,
       following: this.following,
-      followers: this.followers
+      followers: this.followers,
+      posts: this.posts
     };
   },
 

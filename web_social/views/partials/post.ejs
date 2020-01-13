@@ -1,0 +1,17 @@
+<div style="
+  background-color: white; 
+  padding: 24px; 
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;">
+  <div style="font-weight: bold;">
+    {{p.user.fullName}}
+  </div>
+  {{p.text}}
+
+  <div>
+    <img style="max-width: 100%; margin-bottom: 12px;" :src="p.imageUrl">
+  </div>
+
+  <button v-if="p.canDelete" v-on:click="deletePost(p)">Delete Post</button>
+</div>
