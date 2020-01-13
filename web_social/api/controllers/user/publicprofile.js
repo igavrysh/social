@@ -8,17 +8,27 @@ module.exports = async function(req, res) {
   console.log('user: ' + user);
 
   const posts = await Post.find({user: id})
+    .sort('createdAt DESC')
     .populate('user');
-  console.log(posts);
 
   user.posts = posts;
 
-  const objects = JSON.parse(JSON.stringify(user));
+  user.followers.forEach(f => {
+    if (f.id == req.session.userId) {
+      user.isFollowing = true;
+    }
+  });
 
-  console.log('Public profile object' + objects);
+  const sanitizedUser = JSON.parse(JSON.stringify(user));
+
+  sanitizedUser.isFollowing = user.isFollowing;
+
+  if (req.wantsJSON) {
+    return res.send(sanitizedUser);
+  }
 
   res.view('pages/user/publicprofile', {
     layout: 'layouts/nav-layout',
-    user: objects
+    user: sanitizedUser
   });
 }

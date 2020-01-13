@@ -15,6 +15,8 @@
 		D5620EBF23C418AC0065962A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5620EBE23C418AC0065962A /* Service.swift */; };
 		D5A40C4B23CBFDE600C1B421 /* UsersSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A40C4A23CBFDE600C1B421 /* UsersSearchController.swift */; };
 		D5A40C4D23CBFF0C00C1B421 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A40C4C23CBFF0C00C1B421 /* UserSearchCell.swift */; };
+		D5A40C5023CC0B4800C1B421 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A40C4F23CC0B4800C1B421 /* ProfileController.swift */; };
+		D5A40C5223CC108000C1B421 /* UserPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A40C5123CC108000C1B421 /* UserPostCell.swift */; };
 		D5B10ECC23BFA99D00ACBC1F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B10ECB23BFA99D00ACBC1F /* HomeController.swift */; };
 		D5B10ECE23BFAD8300ACBC1F /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B10ECD23BFAD8300ACBC1F /* LoginController.swift */; };
 		D5D29E2F23BFA668003E9BC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D29E2E23BFA668003E9BC1 /* AppDelegate.swift */; };
@@ -57,6 +59,8 @@
 		D5620EBE23C418AC0065962A /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		D5A40C4A23CBFDE600C1B421 /* UsersSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersSearchController.swift; sourceTree = "<group>"; };
 		D5A40C4C23CBFF0C00C1B421 /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
+		D5A40C4F23CC0B4800C1B421 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		D5A40C5123CC108000C1B421 /* UserPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostCell.swift; sourceTree = "<group>"; };
 		D5B10ECB23BFA99D00ACBC1F /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		D5B10ECD23BFAD8300ACBC1F /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		D5D29E2B23BFA668003E9BC1 /* ios_social.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_social.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +117,14 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		D5A40C4E23CC0B3300C1B421 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				D5A40C4F23CC0B4800C1B421 /* ProfileController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		D5B10EC723BFA94300ACBC1F /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +146,7 @@
 			children = (
 				D5FDC93323C4DCA6008B4E84 /* PostCell.swift */,
 				D5A40C4C23CBFF0C00C1B421 /* UserSearchCell.swift */,
+				D5A40C5123CC108000C1B421 /* UserPostCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -141,6 +154,7 @@
 		D5B10ECA23BFA95E00ACBC1F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D5A40C4E23CC0B3300C1B421 /* Profile */,
 				D5A40C4923CBFDD500C1B421 /* Search */,
 				D5B10ECB23BFA99D00ACBC1F /* HomeController.swift */,
 				D5B10ECD23BFAD8300ACBC1F /* LoginController.swift */,
@@ -475,9 +489,11 @@
 				D5620EBD23C4188A0065962A /* Post.swift in Sources */,
 				D5FDC93623C4DED7008B4E84 /* CreatePostController.swift in Sources */,
 				D5D29E2F23BFA668003E9BC1 /* AppDelegate.swift in Sources */,
+				D5A40C5223CC108000C1B421 /* UserPostCell.swift in Sources */,
 				D5A40C4D23CBFF0C00C1B421 /* UserSearchCell.swift in Sources */,
 				D5D29E3123BFA668003E9BC1 /* SceneDelegate.swift in Sources */,
 				D5FDC93423C4DCA6008B4E84 /* PostCell.swift in Sources */,
+				D5A40C5023CC0B4800C1B421 /* ProfileController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

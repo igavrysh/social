@@ -20,4 +20,9 @@ struct User: Decodable {
     let id: String
     let fullName: String
     var isFollowing: Bool?
+    
+    var following, followers: [User]?
+    
+    var posts: [Post]?
+    
 }

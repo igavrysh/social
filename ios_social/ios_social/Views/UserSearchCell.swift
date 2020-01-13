@@ -27,6 +27,12 @@ extension UsersSearchController {
                 self.collectionView.reloadItems(at: [[0, index]])
         }
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let user = items[indexPath.item]
+        let controller = ProfileController(userId: user.id)
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
 
 class UserSearchCell: LBTAListCell<User> {
