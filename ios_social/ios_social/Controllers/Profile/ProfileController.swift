@@ -22,9 +22,15 @@ extension ProfileController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return .init(width: 0, height: 300)
+    }
 }
 
-class ProfileController: LBTAListController<UserPostCell, Post> {
+class ProfileController: LBTAListHeaderController<UserPostCell, Post, ProfileHeader> {
+    
+    var user: User?
     
     let userId: String
     
@@ -41,6 +47,12 @@ class ProfileController: LBTAListController<UserPostCell, Post> {
         super.viewDidLoad()
         
         fetchUserProfile()
+    }
+    
+    override func setupHeader(_ header: ProfileHeader) {
+        super.setupHeader(header)
+        header.fullNameLabel.text = user?.fullName
+        
     }
     
     fileprivate func fetchUserProfile() {
@@ -60,6 +72,7 @@ class ProfileController: LBTAListController<UserPostCell, Post> {
             
             do {
                 let user = try JSONDecoder().decode(User.self, from: data)
+                self.user = user
                 self.items = user.posts ?? []
                 //self.user = user
                 //self.items = user.posts ?? []
