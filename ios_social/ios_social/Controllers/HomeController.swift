@@ -28,7 +28,7 @@ class HomeController: UITableViewController, UINavigationControllerDelegate, UII
             action: #selector(fetchPosts))
         
         navigationItem.rightBarButtonItems = [
-            .init(title: "Fetch posts", style: .plain, target: self, action: #selector(fetchPosts)),
+            .init(title: "Search", style: .plain, target: self, action: #selector(handleSearch)),
             .init(title: "Create post", style: .plain, target: self, action: #selector(createPost))
         ]
         
@@ -37,6 +37,11 @@ class HomeController: UITableViewController, UINavigationControllerDelegate, UII
             style: .plain,
             target: self,
             action: #selector(handleLogin))
+    }
+    
+    @objc fileprivate func handleSearch() {
+        let navController = UINavigationController(rootViewController: UsersSearchController());
+        present(navController, animated: true)
     }
     
     @objc fileprivate func createPost() {

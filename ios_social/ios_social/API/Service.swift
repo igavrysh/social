@@ -63,6 +63,26 @@ class Service: NSObject {
                 completion(.success(dataResp.data ?? Data()))
             }
     }
+    
+    func searchForUsers(completion: @escaping (Result<[User]>) -> ()) {
+        let url = "\(baseUrl)/search"
+        Alamofire.request(url)
+            .validate(statusCode: 200..<300)
+            .responseData { (dataResponse) in
+                if let err = dataResponse.error {
+                    completion(.failure(err))
+                    return
+                }
+                
+                do {
+                    let data = dataResponse.data ?? Data()
+                    let users = try JSONDecoder().decode([User].self, from: data)
+                    completion(.success(users))
+                } catch {
+                    completion(.failure(error))
+                }
+        }
+    }
 }
 
 

@@ -1,12 +1,11 @@
 module.exports = async function(req, res) {
   console.log('Show list of users');
 
-  /*
   const users = await User.find({
     id: {'!=': req.session.userId}
   });
-  */
-  const users = await User.find();
+  
+  //const users = await User.find();
 
 
   const currentUser = await User.findOne({id: req.session.userId})
@@ -29,6 +28,10 @@ module.exports = async function(req, res) {
       emailAddress: u.emailAddress,
       isFollowing: u.isFollowing};
   });
+
+  if (req.wantsJSON) {
+    return res.send(sanitizedUsers);
+  }
 
   res.view('pages/user/search', {
     layout: 'layouts/nav-layout',
