@@ -16,6 +16,8 @@ module.exports = async function(req, res) {
 
     const sanitizedUser = JSON.parse(JSON.stringify(currentUser));
 
+    console.log('sanitizedUser: ' + JSON.stringify(sanitizedUser));
+
     res.view('pages/user/profile', {
       layout: 'layouts/nav-layout',
       user: currentUser

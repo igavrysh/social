@@ -7,19 +7,19 @@ module.exports = async function(req, res) {
   console.log(fullName);
   console.log(bio);
 
-  const file = req.file('imagefile');
+  const file = req.file('imageFile');
   console.log(file);
 
   // no avatar file change was found
   if (file.isNoop) {
     await User.update({id: req.session.userId})
-    .set({fullName: fullName, bio: bio});
+      .set({fullName: fullName, bio: bio});
 
     file.upload({noop: true});
     return res.end();
   }
 
-  //  I'll handel the avatar later 
+  //  I'll handle the avatar later 
 
   const options = {
     adapter: require('skipper-better-s3'),
@@ -33,12 +33,23 @@ module.exports = async function(req, res) {
     if (err) {
       return res.serverError(err.toString());
     }
-    const fileUrl = files[0].extra.location;
-    await User.update({id: userId})
+
+    console.log('---- files = ' + files);
+
+    const fileUrl = files[0].extra.Location;
+
+    console.log('---- fileUrl = ' + fileUrl);
+
+    const userId = req.session.userId;
+
+    const record = await User.update({id: userId})
       .set({
         fullName: fullName, 
         bio: bio, 
-        profileImageUrl: profileImageUrl}).fetch();
+        profileImageUrl: fileUrl}).fetch();
+
+    console.log(JSON.parse(JSON.stringify(record)));
+
     res.end();
   });
 
