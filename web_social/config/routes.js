@@ -78,6 +78,8 @@ module.exports.routes = {
   'GET /profile': 'user/profile',
   'GET /user/:id': 'user/publicprofile',
 
+  'POST /profile': 'user/update',
+
   'GET /customauth/login': { 
     view: 'pages/customauth/custom-login',
     locals: {

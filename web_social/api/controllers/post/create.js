@@ -12,9 +12,7 @@ module.exports = async function(req, res) {
     key: '',
     secret: '',
     bucket: 'gvr-social-bucket',
-    s3params: {
-      ACL: 'public-read'
-    },
+    s3params: { ACL: 'public-read' },
     onProgress: progress => SVGPathSegList.log.verbose('Upload proress: ', progress)
   }
 

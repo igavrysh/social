@@ -10,6 +10,8 @@ module.exports = {
       id: this.id,
       fullName: this.fullName,
       emailAddress: this.emailAddress,
+      bio: this.bio,
+      profileImageUrl: this.profileImageUrl,
       following: this.following,
       followers: this.followers,
       posts: this.posts
@@ -17,6 +19,14 @@ module.exports = {
   },
 
   attributes: {
+
+    bio: {
+      type: 'string'
+    },
+
+    profileImageUrl: {
+      type: 'string'
+    },
     
     following: {
       collection: 'user'

@@ -79,7 +79,7 @@
             Bio:
           </div>
           <div style="font-size: 14px;">
-            <textarea v-model="user.bid"
+            <textarea v-model="user.bio"
               style="font-size: 14px;
                 padding: 8px;
                 border-radius: 5px;
@@ -88,7 +88,6 @@
             </textarea>
           </div>
         </div>
-
 
         <div class="form-item">
           <div class="form-item-label">
@@ -141,12 +140,13 @@
           console.log(this.user.fullName);
 
           const formData = new FormData();
-          formData.append('fullname', this.user.fullName);
+          formData.append('fullName', this.user.fullName);
           formData.append('bio', this.user.bio);
           formData.append('imageFile', this.avatarFile);
           // fire off a post request to update user 
           try {
-            await axios.post('/profile', formData)
+            await axios.post('/profile', formData);
+            location.reload();
           } catch (err) {
             console.error(err.toString());
           }
