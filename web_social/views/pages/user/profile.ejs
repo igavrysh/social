@@ -137,12 +137,23 @@
         avatarFile: null
       }, 
       methods: {
-        handleSave: function() {
+        handleSave: async function() {
           console.log(this.user.fullName);
+
+          const formData = new FormData();
+          formData.append('fullname', this.user.fullName);
+          formData.append('bio', this.user.bio);
+          formData.append('imageFile', this.avatarFile);
+          // fire off a post request to update user 
+          try {
+            await axios.post('/profile', formData)
+          } catch (err) {
+            console.error(err.toString());
+          }
         },
         handleAvatarChange: function(event) {
           this.avatarFile = event.target.files[0];
-          this.user.profileImageUrl = window.URL.createObjectURLthis.avatarFile;
+          this.user.profileImageUrl = window.URL.createObjectURL(this.avatarFile);
         }
       }
     });
