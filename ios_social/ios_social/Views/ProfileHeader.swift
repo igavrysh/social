@@ -20,7 +20,7 @@ class ProfileHeader: UICollectionReusableView {
         action: #selector(handleFollow))
     
     let editProfileButton = UIButton(
-        title: "EditProfile",
+        title: "Edit Profile",
         titleColor: .white,
         font: .boldSystemFont(ofSize: 13),
         backgroundColor: .init(red: 0.24, green: 0.67, blue: 0.96, alpha: 1),
@@ -114,6 +114,7 @@ class ProfileHeader: UICollectionReusableView {
         
         editProfileButton.layer.cornerRadius = 15
         editProfileButton.layer.borderWidth = 1
+        editProfileButton.layer.borderColor = UIColor.white.cgColor
                 
         stack(
             profileImageView,

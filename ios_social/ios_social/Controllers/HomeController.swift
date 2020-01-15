@@ -41,6 +41,10 @@ class HomeController: UITableViewController, UINavigationControllerDelegate, UII
             style: .plain,
             target: self,
             action: #selector(handleLogin))
+        
+        let rc = UIRefreshControl()
+        rc.addTarget(self, action: #selector(fetchPosts), for: .valueChanged)
+        self.tableView.refreshControl = rc
     }
     
     @objc fileprivate func handleSearch() {
@@ -62,6 +66,7 @@ class HomeController: UITableViewController, UINavigationControllerDelegate, UII
     
     @objc func fetchPosts() {
         Service.shared.fetchPosts { (res) in
+            self.tableView.refreshControl?.endRefreshing()
             switch res {
             case .failure(let err):
                 print("Failed to fetch posts: ", err)

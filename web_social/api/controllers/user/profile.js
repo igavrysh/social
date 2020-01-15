@@ -4,6 +4,7 @@ module.exports = async function(req, res) {
     .populate('followers');
 
     const posts = await Post.find({user : req.session.userId})
+      .sort('createdAt DESC')
       .populate('user');
 
     currentUser.posts = posts;

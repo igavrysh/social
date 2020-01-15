@@ -107,7 +107,7 @@ class CreatePostController: UIViewController, UITextViewDelegate {
                     }
                 }
                 
-                uploadRequest.responseJSON { (dataResp) in
+                uploadRequest.responseData { (dataResp) in
                     if let err = dataResp.error {
                         print("Failed to hit server: ", err)
                         return
@@ -120,11 +120,18 @@ class CreatePostController: UIViewController, UITextViewDelegate {
                     print("Successfully created post, here is the response:")
                     
                     self.dismiss(animated: true) {
-                        self.homeController?.fetchPosts()
+                        //self.homeController?.fetchPosts()
+                        self.refreshApplicationWithPosts()
                     }
                 }
             }
             print("Maybe finished uploading")
         }
+    }
+    
+    fileprivate func refreshApplicationWithPosts() {
+        guard let mainTabBarController = (UIApplication.shared.keyWindow?.rootViewController) as? MainTabBarController else { return }
+        
+        mainTabBarController.refreshPosts()
     }
 }
