@@ -81,8 +81,11 @@ class ProfileController: LBTAListHeaderController<UserPostCell, Post, ProfileHea
         header.profileController = self
     }
     
-    fileprivate func fetchUserProfile() {
-        let url = "\(Service.shared.baseUrl)/user/\(userId)"
+    func fetchUserProfile() {
+        let currentUserProfileUrl = "\(Service.shared.baseUrl)/profile"
+        let publicProfileUrl = "\(Service.shared.baseUrl)/user/\(userId)"
+        
+        let url = self.userId.isEmpty ? currentUserProfileUrl : publicProfileUrl
         
         Alamofire.request(url)
             .validate(statusCode: 200..<300)
@@ -99,9 +102,8 @@ class ProfileController: LBTAListHeaderController<UserPostCell, Post, ProfileHea
                 do {
                     let user = try JSONDecoder().decode(User.self, from: data)
                     self.user = user
+                    self.user?.isEditable = self.userId.isEmpty
                     self.items = user.posts ?? []
-                    //self.user = user
-                    //self.items = user.posts ?? []
                     self.collectionView.reloadData()
                 } catch {
                     print("Failed to decode user: ", error)

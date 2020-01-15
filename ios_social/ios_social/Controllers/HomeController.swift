@@ -20,6 +20,8 @@ class HomeController: UITableViewController, UINavigationControllerDelegate, UII
         super.viewDidLoad()
         
         fetchPosts()
+        
+        navigationController?.navigationBar.tintColor = .black
                 
         navigationItem.rightBarButtonItem = .init(
             title: "Fetch postst",
@@ -28,8 +30,10 @@ class HomeController: UITableViewController, UINavigationControllerDelegate, UII
             action: #selector(fetchPosts))
         
         navigationItem.rightBarButtonItems = [
-            .init(title: "Search", style: .plain, target: self, action: #selector(handleSearch)),
+            .init(image: UIImage(named: "search"), style: .plain, target: self, action: #selector(handleSearch))
+            /*,
             .init(title: "Create post", style: .plain, target: self, action: #selector(createPost))
+            */
         ]
         
         navigationItem.leftBarButtonItem = .init(

@@ -13,6 +13,9 @@
 		D5620EBB23C311D10065962A /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5620EBA23C311D10065962A /* RegisterController.swift */; };
 		D5620EBD23C4188A0065962A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5620EBC23C4188A0065962A /* Post.swift */; };
 		D5620EBF23C418AC0065962A /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5620EBE23C418AC0065962A /* Service.swift */; };
+		D5944F7423CEC3BF0017EC2E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5944F7323CEC3BF0017EC2E /* MainTabBarController.swift */; };
+		D5944F7623CEC8830017EC2E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5944F7523CEC8830017EC2E /* User.swift */; };
+		D5944F7823CECBED0017EC2E /* ProfileController+ChangeAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5944F7723CECBED0017EC2E /* ProfileController+ChangeAvatar.swift */; };
 		D5A40C4B23CBFDE600C1B421 /* UsersSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A40C4A23CBFDE600C1B421 /* UsersSearchController.swift */; };
 		D5A40C4D23CBFF0C00C1B421 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A40C4C23CBFF0C00C1B421 /* UserSearchCell.swift */; };
 		D5A40C5023CC0B4800C1B421 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A40C4F23CC0B4800C1B421 /* ProfileController.swift */; };
@@ -58,6 +61,9 @@
 		D5620EBA23C311D10065962A /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		D5620EBC23C4188A0065962A /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D5620EBE23C418AC0065962A /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		D5944F7323CEC3BF0017EC2E /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		D5944F7523CEC8830017EC2E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D5944F7723CECBED0017EC2E /* ProfileController+ChangeAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileController+ChangeAvatar.swift"; sourceTree = "<group>"; };
 		D5A40C4A23CBFDE600C1B421 /* UsersSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersSearchController.swift; sourceTree = "<group>"; };
 		D5A40C4C23CBFF0C00C1B421 /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		D5A40C4F23CC0B4800C1B421 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
@@ -123,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				D5A40C4F23CC0B4800C1B421 /* ProfileController.swift */,
+				D5944F7723CECBED0017EC2E /* ProfileController+ChangeAvatar.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -139,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				D5620EBC23C4188A0065962A /* Post.swift */,
+				D5944F7523CEC8830017EC2E /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -163,6 +171,7 @@
 				D5B10ECD23BFAD8300ACBC1F /* LoginController.swift */,
 				D5620EBA23C311D10065962A /* RegisterController.swift */,
 				D5FDC93523C4DED7008B4E84 /* CreatePostController.swift */,
+				D5944F7323CEC3BF0017EC2E /* MainTabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -486,7 +495,9 @@
 			files = (
 				D5A40C5423CC21F400C1B421 /* ProfileHeader.swift in Sources */,
 				D5620EBB23C311D10065962A /* RegisterController.swift in Sources */,
+				D5944F7423CEC3BF0017EC2E /* MainTabBarController.swift in Sources */,
 				D5620EBF23C418AC0065962A /* Service.swift in Sources */,
+				D5944F7623CEC8830017EC2E /* User.swift in Sources */,
 				D5B10ECC23BFA99D00ACBC1F /* HomeController.swift in Sources */,
 				D5B10ECE23BFAD8300ACBC1F /* LoginController.swift in Sources */,
 				D5A40C4B23CBFDE600C1B421 /* UsersSearchController.swift in Sources */,
@@ -495,6 +506,7 @@
 				D5D29E2F23BFA668003E9BC1 /* AppDelegate.swift in Sources */,
 				D5A40C5223CC108000C1B421 /* UserPostCell.swift in Sources */,
 				D5A40C4D23CBFF0C00C1B421 /* UserSearchCell.swift in Sources */,
+				D5944F7823CECBED0017EC2E /* ProfileController+ChangeAvatar.swift in Sources */,
 				D5D29E3123BFA668003E9BC1 /* SceneDelegate.swift in Sources */,
 				D5FDC93423C4DCA6008B4E84 /* PostCell.swift in Sources */,
 				D5A40C5023CC0B4800C1B421 /* ProfileController.swift in Sources */,
