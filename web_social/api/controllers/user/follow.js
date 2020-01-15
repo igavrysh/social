@@ -7,6 +7,20 @@ module.exports = async function(req, res) {
   
   await User.addToCollection(currentUserId, 'following', userIdToFollow);
 
+  // first fina all post objects from user i am following
+  const postsForUserImFollowing = await Post.find({user: userIdToFollow});
+  postsForUserImFollowing.forEach(async p => {
+    console.log(p.text);
+    await FeedItem.create({
+      post: p.id,
+      postOwner: userIdToFollow,
+      user: currentUserId
+    });
+    console.log("Finished creating feed item")
+  });
+
+  // gen feed items
+
   await User.addToCollection(userIdToFollow, 'followers', currentUserId);
 
   res.end();

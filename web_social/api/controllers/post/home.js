@@ -4,12 +4,25 @@ module.exports = async function(req, res) {
   //await Post.destroy();
   
   const userId = req.session.userId;
-  const allPosts = await Post
-    .find({user: userId})
+  /*
+  const allPosts = await Post.find({user: userId})
     .populate('user')
     .sort('createdAt DESC'); 
 
   allPosts.forEach(p => p.canDelete = true);
+  */
+
+  const allPosts = [];
+
+  const feedItems = await FeedItem.find({user: userId})
+    .populate('post')
+    .populate('postOwner');
+  
+  feedItems.forEach(fi => {
+    console.log(fi.postOwner);
+    fi.post.user = fi.postOwner;
+    allPosts.push(fi.post);
+  });
 
   if (req.wantsJSON) {
     return res.send(allPosts);
