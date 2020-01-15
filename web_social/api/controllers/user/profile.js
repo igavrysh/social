@@ -10,6 +10,7 @@ module.exports = async function(req, res) {
 
     if (req.wantsJSON) {
       res.send(currentUser);
+      return;
     }
 
     // customToJSON

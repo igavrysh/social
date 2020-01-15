@@ -37,8 +37,18 @@ class RegisterController: LBTAFormController, UITextFieldDelegate {
         target: self,
         action: #selector(handleSignup))
     
-    let errorLabel = UILabel(text: "Something went wrong during sign up, please, try again later", font: .systemFont(ofSize: 14), textColor: .red, textAlignment: .center, numberOfLines: 0)
-    lazy var goBackButton = UIButton(title: "Go back to login.", titleColor: .black, font: .systemFont(ofSize: 16), target: self, action: #selector(goToRegister))
+    let errorLabel = UILabel(
+        text: "Something went wrong during sign up, please, try again later",
+        font: .systemFont(ofSize: 14),
+        textColor: .red,
+        textAlignment: .center,
+        numberOfLines: 0)
+    lazy var goBackButton = UIButton(
+        title: "Go back to login.",
+        titleColor: .black,
+        font: .systemFont(ofSize: 16),
+        target: self,
+        action: #selector(goToRegister))
     
     @objc func goToRegister() {
         navigationController?.popViewController(animated: true)

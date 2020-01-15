@@ -15,10 +15,10 @@ class MainTabBarController: UITabBarController {
         
         viewControllers = [
             createNavController(viewController: HomeController(), tabBarImage: UIImage(named: "home")),
-            createNavController(viewController: CreatePostController(selectedImage: UIImage(named: "startup") ?? UIImage()), tabBarImage: UIImage(named: "plus")),
+            createNavController(
+                viewController: CreatePostController(selectedImage: UIImage(named: "startup") ?? UIImage()),
+                tabBarImage: UIImage(named: "plus")),
             createNavController(viewController: ProfileController(userId: ""), tabBarImage: UIImage(named: "user")),
-            
-            
         ]
     }
     

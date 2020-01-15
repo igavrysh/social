@@ -49,7 +49,11 @@ class PostCell: UITableViewCell {
     
     weak var delegate: PostCellOptionsDelegate?
     
-    lazy var optionsButton = UIButton(image: UIImage(named: "post_options") ?? UIImage(), tintColor: .black, target: self, action: #selector(handleOptions))
+    lazy var optionsButton = UIButton(
+        image: UIImage(named: "post_options") ?? UIImage(),
+        tintColor: .black,
+        target: self,
+        action: #selector(handleOptions))
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

@@ -18,7 +18,9 @@ extension ProfileController: UINavigationControllerDelegate, UIImagePickerContro
         present(imagePicker, animated: true)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[.originalImage] as? UIImage {
             dismiss(animated: true) {
                 self.uploadUserProfileImage(image: selectedImage)

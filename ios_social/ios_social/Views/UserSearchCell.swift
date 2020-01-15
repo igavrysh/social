@@ -38,7 +38,13 @@ extension UsersSearchController {
 class UserSearchCell: LBTAListCell<User> {
     
     let nameLabel = UILabel(text: "Full Name", font: .boldSystemFont(ofSize: 16), textColor: .black)
-    lazy var followButton = UIButton(title: "Follow", titleColor: .black, font: .boldSystemFont(ofSize: 14), backgroundColor: .white, target: self, action: #selector(handleFollow))
+    lazy var followButton = UIButton(
+        title: "Follow",
+        titleColor: .black,
+        font: .boldSystemFont(ofSize: 14),
+        backgroundColor: .white,
+        target: self,
+        action: #selector(handleFollow))
     
     @objc fileprivate func handleFollow() {
         (parentController as? UsersSearchController)?.didFollow(user: item)

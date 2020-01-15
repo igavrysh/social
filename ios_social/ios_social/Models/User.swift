@@ -20,6 +20,4 @@ struct User: Decodable {
     var posts: [Post]?
     
     var isEditable: Bool?
-    
-    
 }

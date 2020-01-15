@@ -67,8 +67,13 @@ class ProfileHeader: UICollectionReusableView {
     
     var user: User! {
         didSet {
-            profileImageView.sd_setImage(with: URL(string: user.profileImageUrl ?? ""))
-            profileImageView.image = UIImage(named: "user")
+            if let profileImageUrlString = user.profileImageUrl,
+                let profileImageUrl = URL(string: profileImageUrlString) {
+                profileImageView.sd_setImage(with: profileImageUrl)
+            } else {
+                profileImageView.image =  UIImage(named: "user")
+            }
+
             fullnameLabel.text = user.fullName
             
             bioLabel.text = user.bio

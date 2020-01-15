@@ -124,7 +124,6 @@ class CreatePostController: UIViewController, UITextViewDelegate {
                     }
                 }
             }
-            
             print("Maybe finished uploading")
         }
     }

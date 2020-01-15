@@ -12,9 +12,16 @@ class UserPostCell: LBTAListCell<Post> {
 
     let usernameLabel = UILabel(text: "Username", font: .boldSystemFont(ofSize: 15))
     let postImageView = UIImageView(image: nil, contentMode: .scaleAspectFit)
-    let postTextLabel = UILabel(text: "Post text spanning multiple lines", font: .systemFont(ofSize: 15), numberOfLines: 0)
+    let postTextLabel = UILabel(
+        text: "Post text spanning multiple lines",
+        font: .systemFont(ofSize: 15),
+        numberOfLines: 0)
     
-    lazy var optionsButton = UIButton(image: UIImage(named: "post_options") ?? UIImage(), tintColor: .black, target: self, action: #selector(handleOptions))
+    lazy var optionsButton = UIButton(
+        image: UIImage(named: "post_options") ?? UIImage(),
+        tintColor: .black,
+        target: self,
+        action: #selector(handleOptions))
     
     @objc fileprivate func handleOptions() {
         
