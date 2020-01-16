@@ -24,8 +24,10 @@ module.exports = {
 
     const options = {
       adapter: require('skipper-better-s3'),
+
       key: '',
       secret: '',
+
       bucket: 'gvr-social-bucket',
       s3params: {ACL: 'public-read'}
     };

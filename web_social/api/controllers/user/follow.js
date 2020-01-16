@@ -14,7 +14,8 @@ module.exports = async function(req, res) {
     await FeedItem.create({
       post: p.id,
       postOwner: userIdToFollow,
-      user: currentUserId
+      user: currentUserId,
+      postCreatedAt: p.createdAt
     });
     console.log("Finished creating feed item")
   });

@@ -15,6 +15,7 @@ module.exports = async function(req, res) {
   const allPosts = [];
 
   const feedItems = await FeedItem.find({user: userId})
+    .sort('postCreatedAt DESC')
     .populate('post')
     .populate('postOwner');
   

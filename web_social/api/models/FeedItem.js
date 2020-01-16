@@ -10,10 +10,11 @@ module.exports = {
 
     user: {
       model: 'user'
+    },
+
+    postCreatedAt: {
+      type: 'number'
     }
-
-    // additional props that I'll show you later
-
 
   }
 }
