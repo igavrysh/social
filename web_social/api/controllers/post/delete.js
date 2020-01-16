@@ -6,6 +6,10 @@ module.exports = async function(req, res) {
 
   try {
     await Post.destroy({id: postId, user: req.session.userId});
+
+    // you should delete all the FeedItems for your followers as well
+    await FeedItem.destroy({post: postId});
+
     res.end();
   } catch(err) {
     res.serverError(err.toString());
