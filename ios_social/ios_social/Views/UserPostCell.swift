@@ -8,6 +8,16 @@
 
 import LBTATools
 
+protocol PostDelegate {
+    
+    func showComments(post: Post)
+    
+    func showOptions(post: Post)
+    
+    func handleLike(post: Post)
+    
+}
+
 class UserPostCell: LBTAListCell<Post> {
     
     let profileImageView = CircularImageView(width: 44, image: UIImage(named: "user") ?? UIImage())
@@ -38,16 +48,15 @@ class UserPostCell: LBTAListCell<Post> {
         action: #selector(handleLike))
     
     @objc fileprivate func handleOptions() {
-        
+        (parentController as? PostDelegate)?.showOptions(post: self.item)
     }
     
     @objc fileprivate func handleComment() {
-        (parentController as? HomeController)?.handleShowPostDetailsAndComments(post: self.item)
-        
+        (parentController as? PostDelegate)?.showComments(post: self.item)
     }
     
     @objc fileprivate func handleLike() {
-        
+        (parentController as? PostDelegate)?.handleLike(post: self.item)
     }
     
     override var item: Post! {

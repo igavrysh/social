@@ -9,6 +9,48 @@
 import LBTATools
 import Alamofire
 
+extension ProfileController: PostDelegate {
+    
+    func showComments(post: Post) {
+        let postDetailsController = PostDetailsController(postId: post.id)
+        navigationController?.pushViewController(
+            postDetailsController, 
+            animated: true)
+    }
+    
+    func showOptions(post: Post) {
+        let alertController = UIAlertController(title: "Options", message: nil, preferredStyle: .actionSheet)
+         
+        alertController.addAction(
+             .init(
+                title: "Delete post",
+                style: .destructive,
+                handler: { (_) in
+                    let url = "\(Service.shared.baseUrl)/post/\(post.id)"
+                    Alamofire.request(url, method: .delete)
+                        .validate(statusCode: 200..<300)
+                        .responseData { (dataResp) in
+                            if let err = dataResp.error {
+                                print("Failed to delete:", err)
+                                return
+                            }
+                         
+                            guard let index = self.items.firstIndex(where: { $0.id == post.id }) else { return }
+                            self.items.remove(at: index)
+                            self.collectionView.deleteItems(at: [IndexPath(item: index, section: 0)])
+                        }
+                }))
+         
+         alertController.addAction(.init(title: "Cancel", style: .cancel, handler: nil))
+         
+         self.present(alertController, animated: true)
+    }
+    
+    func handleLike(post: Post) {
+
+    }
+}
+
 extension ProfileController: UICollectionViewDelegateFlowLayout {
     func collectionView(
         _ collectionView: UICollectionView,

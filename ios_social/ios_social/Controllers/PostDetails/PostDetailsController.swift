@@ -59,6 +59,8 @@ class PostDetailsController: LBTAListController<CommentCell, Comment> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "Comments"
+        
         collectionView.keyboardDismissMode = .interactive
         
         setupActivityIndicatorView()

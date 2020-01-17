@@ -74,6 +74,8 @@ module.exports.routes = {
   'GET /post/:id': 'post/index',
   'POST /comment/post/:id': 'comment/create',
 
+  'DELETE /feeditem/:id': 'feeditem/delete',
+
   'GET /search': 'user/search',
   'POST /follow/:id': 'user/follow',
   'POST /unfollow/:id': 'user/unfollow',

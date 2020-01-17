@@ -12,6 +12,48 @@ import LBTATools
 import Alamofire
 import SDWebImage
 
+extension HomeController: PostDelegate {
+    
+    func showComments(post: Post) {
+        let postDetailsController = PostDetailsController(postId: post.id)
+        navigationController?.pushViewController(
+            postDetailsController,
+            animated: true)
+    }
+    
+    func showOptions(post: Post) {
+        let alertController = UIAlertController(title: "Options", message: nil, preferredStyle: .actionSheet)
+        
+        alertController.addAction(
+            .init(
+                title: "Remove from feed",
+                style: .destructive,
+                handler: { (_) in
+                    let url = "\(Service.shared.baseUrl)/feeditem/\(post.id)"
+                    Alamofire.request(url, method: .delete)
+                        .validate(statusCode: 200..<300)
+                        .responseData { (dataResp) in
+                            if let err = dataResp.error {
+                                print("Failed to delete:", err)
+                                return
+                            }
+                            
+                            guard let index = self.items.firstIndex(where: { $0.id == post.id }) else { return }
+                            self.items.remove(at: index)
+                            self.collectionView.deleteItems(at: [[0, index]])
+                        }
+                }))
+        
+        alertController.addAction(.init(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alertController, animated: true)
+    }
+    
+    func handleLike(post: Post) {
+        
+    }
+}
+
 class HomeController: LBTAListController<UserPostCell, Post>,
     UINavigationControllerDelegate,
     UIImagePickerControllerDelegate
@@ -82,11 +124,6 @@ class HomeController: LBTAListController<UserPostCell, Post>,
         print("Show login and sign up pages")
         let navController = UINavigationController(rootViewController: LoginController())
         present(navController, animated: true)
-    }
-    
-    func handleShowPostDetailsAndComments(post: Post) {
-        let postDetailsController = PostDetailsController(postId: post.id)
-        navigationController?.pushViewController(postDetailsController, animated: true)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
