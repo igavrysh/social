@@ -12,10 +12,11 @@ import LBTATools
 import Alamofire
 import SDWebImage
 
-class HomeController: UITableViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    
-    var posts = [Post]()
-    
+class HomeController: LBTAListController<UserPostCell, Post>,
+    UINavigationControllerDelegate,
+    UIImagePickerControllerDelegate
+{
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,7 +45,7 @@ class HomeController: UITableViewController, UINavigationControllerDelegate, UII
         
         let rc = UIRefreshControl()
         rc.addTarget(self, action: #selector(fetchPosts), for: .valueChanged)
-        self.tableView.refreshControl = rc
+        self.collectionView.refreshControl = rc
     }
     
     @objc fileprivate func handleSearch() {
@@ -66,13 +67,13 @@ class HomeController: UITableViewController, UINavigationControllerDelegate, UII
     
     @objc func fetchPosts() {
         Service.shared.fetchPosts { (res) in
-            self.tableView.refreshControl?.endRefreshing()
+            self.collectionView.refreshControl?.endRefreshing()
             switch res {
             case .failure(let err):
                 print("Failed to fetch posts: ", err)
             case .success(let posts):
-                self.posts = posts
-                self.tableView.reloadData()
+                self.items = posts
+                self.collectionView.reloadData()
             }
         }
     }
@@ -82,24 +83,6 @@ class HomeController: UITableViewController, UINavigationControllerDelegate, UII
         let navController = UINavigationController(rootViewController: LoginController())
         present(navController, animated: true)
     }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = PostCell(style: .subtitle, reuseIdentifier: nil)
-        let post = posts[indexPath.row]
-        
-        cell.usernameLabel.text = post.user.fullName
-        cell.postTextLabel.text = post.text
-        cell.postImageView.sd_setImage(with: URL(string: post.imageUrl))
-
-        cell.delegate = self
-        
-        return cell
-    }
-    
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
@@ -116,5 +99,15 @@ class HomeController: UITableViewController, UINavigationControllerDelegate, UII
             self.present(createPostController, animated: true)
         }
     }
-    
+}
+
+extension HomeController: UICollectionViewDelegateFlowLayout {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        let height = estimatedCellHeight(for: indexPath, cellWidth: view.frame.width)
+        return .init(width: view.frame.width, height: height)
+    }
 }

@@ -15,6 +15,8 @@ protocol PostCellOptionsDelegate: class {
 
 extension HomeController: PostCellOptionsDelegate {
     func handlePostOptions(cell: PostCell) {
+        
+        /*
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         let post = self.posts[indexPath.row]
         
@@ -35,6 +37,8 @@ extension HomeController: PostCellOptionsDelegate {
         alertController.addAction(.init(title: "Cancel", style: .cancel, handler: nil))
         
         self.present(alertController, animated: true)
+ 
+        */
     }
 }
 

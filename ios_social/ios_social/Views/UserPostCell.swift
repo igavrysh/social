@@ -23,7 +23,18 @@ class UserPostCell: LBTAListCell<Post> {
         target: self,
         action: #selector(handleOptions))
     
+    lazy var commentButton = UIButton(image: UIImage(named: "comment-buble") ?? UIImage(), tintColor: .black, target: self, action: #selector(handleComment))
+    lazy var likeButton = UIButton(image: UIImage(named: "likeOutline") ?? UIImage(), tintColor: .black, target: self, action: #selector(handleLike))
+    
     @objc fileprivate func handleOptions() {
+        
+    }
+    
+    @objc fileprivate func handleComment() {
+        
+    }
+    
+    @objc fileprivate func handleLike() {
         
     }
     
