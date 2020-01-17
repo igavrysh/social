@@ -23,7 +23,7 @@
       <%- partial('../../partials/post')%>
     </div>
 
-    <form action="/comment/post/post.id" method="POST">
+    <form :action="'/comment/post/' + post.id" method="POST">
       <textarea placeholder="Enter comment" 
         style="width: 100%; 
           padding: 16px; 
