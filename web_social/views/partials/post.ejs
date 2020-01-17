@@ -29,8 +29,6 @@
     </div>
 
   </div>
-  
-
 
   <div style="margin-bottom: 12px;">
     {{p.text}}
@@ -39,6 +37,8 @@
   <div>
     <img style="max-width: 100%; margin-bottom: 12px;" :src="p.imageUrl">
   </div>
+
+  <a :href="'/post/' + p.id" style="margin-bottom: 12px;">Comment</a>
 
   <button v-if="p.canDelete" v-on:click="deletePost(p)">Delete Post</button>
 </div>

@@ -1,0 +1,57 @@
+<div>
+
+  <style>
+    .center-cropped {
+      object-position: center; /* Center the image within the element */
+      object-fit: cover;
+      width: 50px;
+      height: 50px;
+      border-radius: 100px;
+      border: solid 1px rgb(94, 94, 94);
+    }
+  
+  </style>
+
+
+  <%- exposeLocalsToBrowser({keys: ['post']})%>
+
+  <%- partial('../../partials/navbar.ejs') %>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <div id="app" style="padding: 24px;">
+    <div v-for="p in [post]">
+      <%- partial('../../partials/post')%>
+    </div>
+
+    <form action="/comment/post/post.id" method="POST">
+      <textarea placeholder="Enter comment" 
+        style="width: 100%; 
+          padding: 16px; 
+          font-size: 14px;"></textarea>
+      <div style="display: flex;">
+        <div style="flex: 1"></div>
+        <button style="background-color: dodgerblue; 
+          padding: 8px; 
+          margin-top: 8px; 
+          color: white; 
+          font-weight: bold;">
+          Submit Comment
+        </button>
+      </div>
+      
+    </form>
+
+  </div>
+
+
+  <script>
+    const app = new Vue({
+      el: "#app",
+      data: {
+        message: "Vue start",
+        post: window.SAILS_LOCALS.post
+      }
+    });
+  </script>
+
+</div>

@@ -71,6 +71,8 @@ module.exports.routes = {
   'POST /post': 'post/create',
   'DELETE /post/:postId': 'post/delete',
 
+  'GET /post/:id': 'post/index',
+
   'GET /search': 'user/search',
   'POST /follow/:id': 'user/follow',
   'POST /unfollow/:id': 'user/unfollow',
