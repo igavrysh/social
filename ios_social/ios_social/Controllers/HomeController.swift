@@ -84,6 +84,11 @@ class HomeController: LBTAListController<UserPostCell, Post>,
         present(navController, animated: true)
     }
     
+    func handleShowPostDetailsAndComments(post: Post) {
+        let postDetailsController = PostDetailsController(postId: post.id)
+        navigationController?.pushViewController(postDetailsController, animated: true)
+    }
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)
     }

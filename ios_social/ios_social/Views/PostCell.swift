@@ -44,6 +44,8 @@ extension HomeController: PostCellOptionsDelegate {
 
 class PostCell: UITableViewCell {
     
+    /*
+    
     let usernameLabel = UILabel(text: "Username", font: .boldSystemFont(ofSize: 15))
     let postImageView = UIImageView(image: nil, contentMode: .scaleAspectFill)
     let postTextLabel = UILabel(
@@ -81,4 +83,5 @@ class PostCell: UITableViewCell {
     @objc fileprivate func handleOptions() {
         delegate?.handlePostOptions(cell: self)
     }
+     */
 }

@@ -16,6 +16,7 @@
 		D5944F7423CEC3BF0017EC2E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5944F7323CEC3BF0017EC2E /* MainTabBarController.swift */; };
 		D5944F7623CEC8830017EC2E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5944F7523CEC8830017EC2E /* User.swift */; };
 		D5944F7823CECBED0017EC2E /* ProfileController+ChangeAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5944F7723CECBED0017EC2E /* ProfileController+ChangeAvatar.swift */; };
+		D5944F7B23D204940017EC2E /* PostDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5944F7A23D204940017EC2E /* PostDetailsController.swift */; };
 		D5A40C4B23CBFDE600C1B421 /* UsersSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A40C4A23CBFDE600C1B421 /* UsersSearchController.swift */; };
 		D5A40C4D23CBFF0C00C1B421 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A40C4C23CBFF0C00C1B421 /* UserSearchCell.swift */; };
 		D5A40C5023CC0B4800C1B421 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A40C4F23CC0B4800C1B421 /* ProfileController.swift */; };
@@ -64,6 +65,7 @@
 		D5944F7323CEC3BF0017EC2E /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		D5944F7523CEC8830017EC2E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D5944F7723CECBED0017EC2E /* ProfileController+ChangeAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileController+ChangeAvatar.swift"; sourceTree = "<group>"; };
+		D5944F7A23D204940017EC2E /* PostDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsController.swift; sourceTree = "<group>"; };
 		D5A40C4A23CBFDE600C1B421 /* UsersSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersSearchController.swift; sourceTree = "<group>"; };
 		D5A40C4C23CBFF0C00C1B421 /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		D5A40C4F23CC0B4800C1B421 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D5944F7923D204800017EC2E /* PostDetails */ = {
+			isa = PBXGroup;
+			children = (
+				D5944F7A23D204940017EC2E /* PostDetailsController.swift */,
+			);
+			path = PostDetails;
+			sourceTree = "<group>";
+		};
 		D5A40C4923CBFDD500C1B421 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +175,7 @@
 		D5B10ECA23BFA95E00ACBC1F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D5944F7923D204800017EC2E /* PostDetails */,
 				D5A40C4E23CC0B3300C1B421 /* Profile */,
 				D5A40C4923CBFDD500C1B421 /* Search */,
 				D5B10ECB23BFA99D00ACBC1F /* HomeController.swift */,
@@ -507,6 +518,7 @@
 				D5A40C5223CC108000C1B421 /* UserPostCell.swift in Sources */,
 				D5A40C4D23CBFF0C00C1B421 /* UserSearchCell.swift in Sources */,
 				D5944F7823CECBED0017EC2E /* ProfileController+ChangeAvatar.swift in Sources */,
+				D5944F7B23D204940017EC2E /* PostDetailsController.swift in Sources */,
 				D5D29E3123BFA668003E9BC1 /* SceneDelegate.swift in Sources */,
 				D5FDC93423C4DCA6008B4E84 /* PostCell.swift in Sources */,
 				D5A40C5023CC0B4800C1B421 /* ProfileController.swift in Sources */,
