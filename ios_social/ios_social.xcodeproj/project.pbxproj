@@ -153,7 +153,6 @@
 		D5B10EC723BFA94300ACBC1F /* API */ = {
 			isa = PBXGroup;
 			children = (
-				D5620EBE23C418AC0065962A /* Service.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -163,6 +162,7 @@
 			children = (
 				D5620EBC23C4188A0065962A /* Post.swift */,
 				D5944F7523CEC8830017EC2E /* User.swift */,
+				D5620EBE23C418AC0065962A /* Service.swift */,
 				D5944F7C23D208040017EC2E /* Comment.swift */,
 			);
 			path = Models;
