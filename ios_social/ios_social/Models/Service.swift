@@ -12,7 +12,8 @@ class Service: NSObject {
     
     static let shared = Service()
     
-    let baseUrl = "http://localhost:1337"
+    //let baseUrl = "http://localhost:1337"
+    let baseUrl = "https://socialapp-igavrysh.herokuapp.com"
     
     func login(email: String, password: String, completion: @escaping (Result<Data>) -> ()) {
         print("Performing login")
