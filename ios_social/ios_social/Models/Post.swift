@@ -14,9 +14,12 @@ struct Post: Decodable {
     let createdAt: Int
     let user: User
     let imageUrl: String
+    
     let fromNow: String?
     
     var comments: [Comment]?
+    
+    var hasLiked: Bool?
 }
 
 

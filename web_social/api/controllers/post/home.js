@@ -16,6 +16,7 @@ module.exports = async function(req, res) {
     if (fi.post) {
       fi.post.user = fi.postOwner;
       fi.post.canDelete = fi.post.user.id == req.session.userId;
+      fi.post.hasLiked = fi.hasLiked;
       allPosts.push(fi.post);
     }
   });

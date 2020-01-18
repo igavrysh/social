@@ -50,7 +50,20 @@ extension HomeController: PostDelegate {
     }
     
     func handleLike(post: Post) {
+        let hasLiked = post.hasLiked == true
         
+        let string = hasLiked == true ? "dislike" : "like"
+        let url = "\(Service.shared.baseUrl)/\(string)/\(post.id)"
+        Alamofire.request(url, method: .post)
+            .validate(statusCode: 200..<300)
+            .responseData { (dataResp) in
+                // completion
+            
+                guard let indexOfPost = self.items.firstIndex(where: { $0.id == post.id }) else { return }
+                self.items[indexOfPost].hasLiked?.toggle()
+                let indexPath = IndexPath(item: indexOfPost, section: 0)
+                self.collectionView.reloadItems(at: [indexPath])
+        }
     }
 }
 

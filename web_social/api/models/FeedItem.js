@@ -14,6 +14,11 @@ module.exports = {
 
     postCreatedAt: {
       type: 'number'
+    },
+
+    hasLiked: {
+      type: 'boolean',
+      defaultsTo: false
     }
 
   }

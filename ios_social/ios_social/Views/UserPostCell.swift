@@ -64,8 +64,18 @@ class UserPostCell: LBTAListCell<Post> {
             usernameLabel.text = item.user.fullName
             postImageView.sd_setImage(with: URL(string: item.imageUrl))
             postTextLabel.text = item.text
+            
             profileImageView.sd_setImage(with: URL(string: item.user.profileImageUrl ?? ""))
+            
             fromNowLabel.text = item.fromNow
+            
+            if item.hasLiked == true {
+                likeButton.setImage(UIImage(named: "like-filled") ?? UIImage(), for: .normal)
+                likeButton.tintColor = .red
+            } else {
+                likeButton.setImage(UIImage(named: "like-outline") ?? UIImage(), for: .normal)
+                likeButton.tintColor = .black
+            }
         }
     }
     
