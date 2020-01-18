@@ -49,6 +49,10 @@ extension ProfileController: PostDelegate {
     func handleLike(post: Post) {
 
     }
+    
+    func showLikes(post: Post) {
+        
+    }
 }
 
 extension ProfileController: UICollectionViewDelegateFlowLayout {

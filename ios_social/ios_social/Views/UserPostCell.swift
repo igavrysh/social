@@ -16,6 +16,8 @@ protocol PostDelegate {
     
     func handleLike(post: Post)
     
+    func showLikes(post: Post)
+    
 }
 
 class UserPostCell: LBTAListCell<Post> {
@@ -47,6 +49,13 @@ class UserPostCell: LBTAListCell<Post> {
         target: self,
         action: #selector(handleLike))
     
+    lazy var numLikesButton = UIButton(
+        title: "0 likes",
+        titleColor: .black,
+        font: .boldSystemFont(ofSize: 14),
+        target: self,
+        action: #selector(handleShowLikes))
+    
     @objc fileprivate func handleOptions() {
         (parentController as? PostDelegate)?.showOptions(post: self.item)
     }
@@ -57,6 +66,11 @@ class UserPostCell: LBTAListCell<Post> {
     
     @objc fileprivate func handleLike() {
         (parentController as? PostDelegate)?.handleLike(post: self.item)
+    }
+    
+    @objc fileprivate func handleShowLikes() {
+        (parentController as? PostDelegate)?.showLikes(post: self.item)
+        
     }
     
     override var item: Post! {
@@ -76,6 +90,8 @@ class UserPostCell: LBTAListCell<Post> {
                 likeButton.setImage(UIImage(named: "like-outline") ?? UIImage(), for: .normal)
                 likeButton.tintColor = .black
             }
+            
+            numLikesButton.setTitle("\(item.numLikes) likes", for: .normal)
         }
     }
     
@@ -108,6 +124,9 @@ class UserPostCell: LBTAListCell<Post> {
                 commentButton,
                 UIView(),
                 spacing: 12).padLeft(16),
+            hstack(
+                numLikesButton,
+                UIView()).padLeft(16),
             spacing:16).withMargins(.init(top: 16, left: 0, bottom: 16, right: 0))
     }
 }

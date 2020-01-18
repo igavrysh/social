@@ -7,6 +7,12 @@ module.exports = {
   },
 
   attributes: {
+
+    numLikes: {
+      type: 'number',
+      defaultsTo: 0
+    },
+
     text: {
       type: 'string', 
       required: true

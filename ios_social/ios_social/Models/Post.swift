@@ -20,6 +20,8 @@ struct Post: Decodable {
     var comments: [Comment]?
     
     var hasLiked: Bool?
+    
+    var numLikes: Int
 }
 
 

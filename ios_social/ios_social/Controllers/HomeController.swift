@@ -61,9 +61,15 @@ extension HomeController: PostDelegate {
             
                 guard let indexOfPost = self.items.firstIndex(where: { $0.id == post.id }) else { return }
                 self.items[indexOfPost].hasLiked?.toggle()
+                self.items[indexOfPost].numLikes += hasLiked ? -1 : 1
                 let indexPath = IndexPath(item: indexOfPost, section: 0)
                 self.collectionView.reloadItems(at: [indexPath])
         }
+    }
+    
+    func showLikes(post: Post) {
+        let likesController = LikesController(postId: post.id)
+        navigationController?.pushViewController(likesController, animated: true)
     }
 }
 
