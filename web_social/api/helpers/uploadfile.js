@@ -22,11 +22,14 @@ module.exports = {
     const file = inputs.file;
     // perform file upload 
 
+    const key = process.env.AWS_KEY;
+    const secret = process.env.AWS_SECRET;
+
     const options = {
       adapter: require('skipper-better-s3'),
 
-      key: '',
-      secret: '',
+      key: key,
+      secret: secret,
 
       bucket: 'gvr-social-bucket',
       s3params: {ACL: 'public-read'}
