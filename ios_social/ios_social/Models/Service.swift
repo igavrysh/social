@@ -14,7 +14,7 @@ class Service: NSObject {
     
     //let baseUrl = "http://localhost:1337"
     //let baseUrl = "https://socialapp-igavrysh.herokuapp.com"
-    let baseUrl = "https://socialapp-igavrysh.herokuapp.com"
+    let baseUrl = "https://social-265517.appspot.com"
     
     func login(email: String, password: String, completion: @escaping (Result<Data>) -> ()) {
         print("Performing login")
