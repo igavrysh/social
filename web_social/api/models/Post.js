@@ -13,6 +13,10 @@ module.exports = {
       defaultsTo: 0
     },
 
+    likes: {
+      collection: 'like'
+    },
+
     text: {
       type: 'string', 
       required: true

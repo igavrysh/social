@@ -57,8 +57,6 @@ extension HomeController: PostDelegate {
         Alamofire.request(url, method: .post)
             .validate(statusCode: 200..<300)
             .responseData { (dataResp) in
-                // completion
-            
                 guard let indexOfPost = self.items.firstIndex(where: { $0.id == post.id }) else { return }
                 self.items[indexOfPost].hasLiked?.toggle()
                 self.items[indexOfPost].numLikes += hasLiked ? -1 : 1
@@ -93,9 +91,6 @@ class HomeController: LBTAListController<UserPostCell, Post>,
         
         navigationItem.rightBarButtonItems = [
             .init(image: UIImage(named: "search"), style: .plain, target: self, action: #selector(handleSearch))
-            /*,
-            .init(title: "Create post", style: .plain, target: self, action: #selector(createPost))
-            */
         ]
         
         navigationItem.leftBarButtonItem = .init(

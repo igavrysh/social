@@ -7,10 +7,12 @@ module.exports = async function(req, res) {
       user: req.session.userId
     }).set({hasLiked: true});
 
-    await Like.create({
+    var createdLike = await Like.create({
       post: postId,
       user: req.session.userId
     });
+
+    await Post.addToCollection(postId, 'likes', createdLike.id);
 
     const numLikes = await Like.count({post: postId});
 

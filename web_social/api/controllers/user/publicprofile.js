@@ -9,7 +9,12 @@ module.exports = async function(req, res) {
 
   const posts = await Post.find({user: id})
     .sort('createdAt DESC')
-    .populate('user');
+    .populate('user')
+    .populate('likes');
+
+  posts.forEach(p => {
+    p.hasLiked = p.likes.filter(l => l.user.id == id).length > 0
+  });
 
   user.posts = posts;
 

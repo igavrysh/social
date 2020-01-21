@@ -7,7 +7,6 @@ module.exports = {
       type: 'ref',
       description: 'The file I want to upload to AW S3'
     }
-
   },
 
   exits: {

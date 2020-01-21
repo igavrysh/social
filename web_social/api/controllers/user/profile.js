@@ -3,9 +3,23 @@ module.exports = async function(req, res) {
     .populate('following')
     .populate('followers');
 
-    const posts = await Post.find({user : req.session.userId})
+    const userId = req.session.userId;
+
+    const posts = await Post.find({user : userId})
       .sort('createdAt DESC')
-      .populate('user');
+      .populate('user')
+      .populate('like');
+
+    await posts.forEach(async p => {
+      p.canDelete = true;
+
+      const likeSaved = await Like.find({post: p.id, user: userId});
+      console.log("123: " + likeSaved);
+    });
+
+
+    const firstPostId = posts[0].id;
+    console.log('firstPostId: ' + firstPostId);
 
     currentUser.posts = posts;
 
