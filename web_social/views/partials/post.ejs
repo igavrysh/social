@@ -41,4 +41,6 @@
   <a :href="'/post/' + p.id" style="margin-bottom: 12px;">Comment</a>
 
   <button v-if="p.canDelete" v-on:click="deletePost(p)">Delete Post</button>
+
+  <button v-on:click="likePost(p)">Like Post</button>
 </div>

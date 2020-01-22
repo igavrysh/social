@@ -155,6 +155,11 @@
           this.avatarFile = event.target.files[0];
           this.user.profileImageUrl = window.URL.createObjectURL(this.avatarFile);
         }
+      },
+      likePost: async function(post) {
+        console.log("Liking post: " + post.id);
+        await axios.post('/like/' + post.id);
+        location.reload();
       }
     });
   </script>

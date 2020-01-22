@@ -168,6 +168,11 @@
           this.shouldShowDeleteConfirmation = true;
 
           return;
+        },
+        likePost: async function(post) {
+          console.log("Liking post: " + post.id);
+          await axios.post('/like/' + post.id);
+          location.reload();
         }
       }
     })

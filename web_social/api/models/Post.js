@@ -13,10 +13,6 @@ module.exports = {
       defaultsTo: 0
     },
 
-    likes: {
-      collection: 'like'
-    },
-
     text: {
       type: 'string', 
       required: true
@@ -30,6 +26,11 @@ module.exports = {
 
     user: {
       model: 'user'
+    },
+
+    likes: {
+      collection: 'like',
+      via: 'post'
     }
   }
 }

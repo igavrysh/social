@@ -85,6 +85,13 @@
       data: {
         message: 'Hello from VUE',
         user: window.SAILS_LOCALS.user
+      },
+      methods: {
+        likePost: async function(post) {
+          console.log("Liking post: " + post.id);
+          await axios.post('/like/' + post.id);
+          location.reload();
+        }
       }
     });
   </script>
